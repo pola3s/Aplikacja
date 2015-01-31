@@ -1,0 +1,29 @@
+<h1>Listing items</h1>
+
+<%= link_to "Your Cart", :controller => :cart, :action => :Index %>
+
+<table>
+  <tbody>
+    <% @items.each do |item| %>
+        <tr>
+          <td>
+            <br>
+            <div><%= image_tag item.image.url %></div>
+          <td>
+            <div><%= link_to item.title, item %></div>
+            <div><%= item.signature %></div>
+            <div><%= item.description %></div>
+            <div><%= item.price %></div>
+            <!-- <div><%= link_to 'Show', item %>  |  <%= link_to 'Edit', edit_item_path(item) %>  |  <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+            -->
+            <%= button_to "Add to Cart", add_to_cart_path(item.id) %>
+          </td>
+        </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item', new_item_path %>
