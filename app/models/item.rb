@@ -1,7 +1,8 @@
 
 class Item < ActiveRecord::Base
 
-  has_attached_file :image, :styles => { :medium =>     "300x300#", :thumb => "200x200#" }
+  has_attached_file :image, :styles => { :medium =>     "60x100#", :thumb => "60x100#" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
+  belongs_to :User
 end
