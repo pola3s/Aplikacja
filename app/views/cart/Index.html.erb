@@ -5,7 +5,7 @@
   <table>
     <% @cart.each do |id, quantity| %>
       <% item = Item.find(id) %>
-        <td><img src="<%= item.image_url %>"  height="40" weight ="14" /></td>
+        <td><img src="<%= item.image %>"  height="160" weight ="60" /></td>
         <td><%= item.title %></td>
         <td width="60"><%= quantity %></td>
         <td width="60"><%= number_to_currency item.price, :unit => "zł" %></td>
