@@ -3,17 +3,21 @@
   <div class="container">
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Strona główna", root_path, class: 'navbar-brand' %></li>
+        <!-- <li><%= link_to "Strona główna", root_path, class: 'navbar-brand' %></li> --!>
         <!-- <li><%= link_to 'Members', users_path %></li>  --!>
 
         <% if current_user %>
-            <li><%= link_to "Your Cart", :controller => :cart, :action => :Index %></li>
+            <li><%= link_to "Prenumerata", items_path %></li>
 
-            <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+            <li><%= link_to "Twoje zamówienie", :controller => :cart, :action => :Index %></li>
 
-            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'Edytuj profil', edit_user_registration_path %></li>
+
+            <li><%= link_to 'Wyloguj się', destroy_user_session_path, method: :delete %></li>
         <% else %>
-            <li><%= link_to 'Login', new_user_session_path %></li>
+            <li><%= link_to 'Zaloguj się', new_user_session_path %></li>
+
+            <li><%= link_to 'Zarejestruj się', new_user_registration_path %></li>
         <% end %>
       </ul>
     </div>

@@ -1,6 +1,7 @@
 class CartController < ApplicationController
   def Index
     @cart = session[:cart] ||= Hash.new(0)
+    id = params[:id]
   end
 
   def add

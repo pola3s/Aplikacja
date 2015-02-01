@@ -89,5 +89,7 @@ Rails.application.configure do
       user_name: "paulina.serwinska@gmail.com",
       password: "paulina13"
   }
+  config.assets.compile = true
+
 
 end
