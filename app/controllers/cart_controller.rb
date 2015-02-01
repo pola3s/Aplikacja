@@ -9,6 +9,11 @@ class CartController < ApplicationController
     cart[id] = (cart[id] || 0) + 1
     redirect_to :action => :Index
   end
+
+  def show
+    @cart = session[:cart] ||= Hash.new(0)
+  end
+
 end
 
 

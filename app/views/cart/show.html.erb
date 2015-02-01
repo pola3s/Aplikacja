@@ -1,0 +1,17 @@
+<h1>Dziękujemy za złożenie zamówienia!</h1>
+
+
+<% total = 0 %>
+<p>Twoje zamówienie zostało przyjęte do realizacji.</p>
+
+<table style="width:100%">
+  <% @cart.each do |id, quantity| %>
+      <% item = Item.find(id) %>
+      <td><%= item.title %></td>
+      <td><%= number_to_currency item.price, :unit => "zł" %></td>
+      <td><%= number_to_currency item.price * quantity, :unit => "zł" %></td>
+      </tr>
+  <% end %>
+</table>
+
+<p></p>

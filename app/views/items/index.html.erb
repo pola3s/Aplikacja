@@ -14,8 +14,6 @@
             <div><%= item.signature %></div>
             <div><%= item.description %></div>
             <div><%= item.price %></div>
-            <!-- <div><%= link_to 'Show', item %>  |  <%= link_to 'Edit', edit_item_path(item) %>  |  <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></div>
-            -->
             <%= button_to "Add to Cart", add_to_cart_path(item.id) %>
           </td>
         </tr>
@@ -26,4 +24,3 @@
 
 <br>
 
-<%= link_to 'New Item', new_item_path %>

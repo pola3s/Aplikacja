@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
 
   post 'cart/add/:id' => 'cart#add', as: 'add_to_cart'
+  get 'cart/show' => 'cart#show'
 
   resources :items
 

@@ -22,9 +22,10 @@
 
 <p>
   <strong>Image url:</strong>
-    <img src="<%= @item.image_url %>" height="200" weight="70"/>
+    <img src="<%= @item.image %>" height="200" weight="70"/>
 
 </p>
 
+<%= button_to "Add to Cart", add_to_cart_path(item.id) %>
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
