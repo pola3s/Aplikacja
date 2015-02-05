@@ -1,18 +1,57 @@
 <h1>Dziękujemy za złożenie zamówienia!</h1>
 
 
-<% total = 0 %>
 <p>Twoje zamówienie zostało przyjęte do realizacji.</p>
 
-<%= cart.id %></div>
 
+<table class="table">
+  <tr>
+    <th>Numer zamówienia</th>
+     <td>#000<%= @cart.id %></td>
+  </tr>
+  <tr>
+    <th>
+      Twoje zamówienie
+    </th>
+    <td>
+       <% @cart.cart_items.each do |cart_item| %>
+          <% item = cart_item.item %>
+          <p><%= item.title %>
+          <%= cart_item.count %>szt.
 
-<table style="width:100%">
-  <% @cart.each do |id, quantity| %>
-      <% item = Item.find(id) %>
-      <td><%= item.title %></td>
-      <td><%= number_to_currency item.price * quantity, :unit => "zł" %></td>
-      </tr>
-  <% end %>
+       <% end %>
+           <p> Total:<%= number_to_currency @cart.total_price, :unit => "zł" %></p>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Adres do wysyłki</th>
+    <td>Tutaj dopisz dane usera!</td>
+  </tr>
+
+  <tr>
+    <th>
+      Dane do przelewu
+    </th>
+    <td>
+      <p>58 1750 0012 0000 0000 2146 9718</p>
+      <p>Raiffeisen bank</p>
+
+      <p>ADRES FIRMY</p>
+      <p>Sp. z.o.o. Sp. Komandytowa</p>
+      <p>Ul. Miłkowskiego 1</p>
+      <p>30-349 Kraków</p>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Tytuł przelewu</th>
+    <td>Zamówienie #000<%= @cart.id %></td>
+  </tr>
+
+  <tr>
+    <th>Kwota całkowita</th>
+    <td><%= number_to_currency @cart.total_price, :unit => "zł" %></td>
+  </tr>
 </table>
 

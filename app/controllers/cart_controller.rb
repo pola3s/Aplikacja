@@ -22,7 +22,7 @@ class CartController < ApplicationController
   end
 
   def show
-     @cart = session[:cart] ||= Hash.new(0)
+     find_cart
   end
 
   private

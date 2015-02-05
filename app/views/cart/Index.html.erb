@@ -1,6 +1,6 @@
-<h1>Your cart</h1>
+<h1>Twoje zamówienie</h1>
 
-<%= @cart.id %>
+<p>Numer zamówienia #000<%= @cart.id %></p>
 
   <table>
     <% @cart.cart_items.each do |cart_item| %>
@@ -19,5 +19,5 @@
   </table>
 
 
-<p><%= link_to 'Dodaj kolejny egzemplarz', items_path %> lub <%= link_to 'Przejdź dalej' %></p>
+<p><%= link_to 'Dodaj kolejny egzemplarz', items_path %> lub <%= link_to 'Przejdź dalej', cart_show_path(@cart.id) %></p>
 
