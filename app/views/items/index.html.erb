@@ -1,20 +1,17 @@
-<h1>Listing items</h1>
+<h1>Numery archiwalne</h1>
 
 
-
-<table>
+  <table class="table table-condensed">
   <tbody>
     <% @items.each do |item| %>
         <tr>
-          <td>
-            <br>
-            <div><%= image_tag item.image.url %></div>
-          <td>
-            <div><%= item.title %></div>
-            <div><%= item.signature %></div>
-            <div><%= item.description %></div>
-            <div><%= item.price %></div>
-            <%= button_to "Add to Cart", add_to_cart_path(item.id) %>
+          <td><div><%= image_tag item.image.url %></div><td>
+              <div><%= item.title %></div>
+               <div><%= item.signature %></div>
+               <br>
+               <div><%= item.description %></div>
+               <div><%= item.price %></div>
+            <%= button_to "Wybierz", add_to_cart_path(item.id) %>
           </td>
         </tr>
 
