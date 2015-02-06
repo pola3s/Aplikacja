@@ -26,8 +26,12 @@
   <tr>
     <th>Adres do wysyłki</th>
     <td>
-
-    </td>
+      <% if current_user %>
+         <p> <%= current_user.name %> <%= current_user.surname %></p>
+          <p> <%= current_user.street %></p>
+          <p><%= current_user.postcode %> <%= current_user.city %></p>
+          <p><%= link_to 'Edytuj dane', edit_user_registration_path %></p>
+       <% end %>
   </tr>
 
   <tr>
