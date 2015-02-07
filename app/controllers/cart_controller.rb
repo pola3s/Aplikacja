@@ -1,5 +1,8 @@
 class CartController < ApplicationController
   before_filter :authenticate_user!
+  before_action :set_users :only [ :new, :edit, :update, :create ]
+
+
   def Index
     find_cart
   end
@@ -39,13 +42,14 @@ class CartController < ApplicationController
 
   end
 
-
+  def set_users
+    @users =
+  end
 
   def save
 
     id = params[:id]
     find_cart()
-
 
     respond_to do |format|
       if @cart.save
@@ -56,9 +60,6 @@ class CartController < ApplicationController
     end
   end
 
-
-
-
   private
   def find_cart
     if session[:cart_id]
@@ -68,7 +69,6 @@ class CartController < ApplicationController
       session[:cart_id] = @cart.id
     end
   end
-
 
 
 end

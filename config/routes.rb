@@ -3,20 +3,12 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-
-
-
   devise_for :users
   resources :users, only: [:index, :show]
-
-
-
 
   get 'cart/Index'
 
   root 'static_pages#home'
-
-
 
   post 'cart/add/:id' => 'cart#add', as: 'add_to_cart'
 
@@ -27,6 +19,8 @@ Rails.application.routes.draw do
   get 'cart/show/' => 'cart#show'
 
   resources :items
+
+  resources :carts
 
   #map.connect ":controller/:action/:id"
 

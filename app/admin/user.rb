@@ -1,12 +1,12 @@
-ActiveAdmin.register User do
-  permit_params :name, :surname, :street, :postcode, :city, :emai, :phone,
+ActiveAdmin.register User, :as => "Customer" do
 
   index do
     selectable_column
     id_column
     column :name
     column :surname
-    column :pahone
+    column :email
+    column :created_at
     actions
   end
 
@@ -14,8 +14,12 @@ ActiveAdmin.register User do
     attributes_table do
       row :name
       row :surname
-      row :phone
+      row :street
+      row :postcode
+      row :city
 
     end
   end
+
+
 end

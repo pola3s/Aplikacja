@@ -1,21 +1,23 @@
-<h1>Twoje zamówienie</h1>
+
 
 <p>Numer zamówienia #000<%= @cart.id %></p>
 
-  <table>
+<p><%= @cart.user_id %></p>
+
+  <table class="table">
     <% @cart.cart_items.each do |cart_item| %>
         <% item = cart_item.item %>
         <td><img src="<%= item.image %>"  height="160" weight ="60" /></td>
         <td><%= item.title %></td>
-        <td><%= button_to "+1", add_to_cart_path(item.id) %></td>
-        <td width="60"><%= cart_item.count %></td>
         <td><%= button_to "-1", subtract_from_cart_path(item.id) %></td>
-        <td width="60"><%= number_to_currency item.price, :unit => "zł" %></td>
+        <td width="60"><%= cart_item.count %></td>
+        <td><%= button_to "+1", add_to_cart_path(item.id) %></td>
         <td width="60"><%= number_to_currency cart_item.price, :unit => "zł" %></td>
         </tr>
     <% end %>
+    <br>
     <tr>
-      <td colspan="4">Total:</td>
+      <td colspan="5">Total:</td>
       <td><%= number_to_currency @cart.total_price, :unit => "zł" %></td>
     </tr>
   </table>
