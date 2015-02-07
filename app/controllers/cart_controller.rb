@@ -1,6 +1,6 @@
 class CartController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_users :only [ :new, :edit, :update, :create ]
+
 
 
   def Index
@@ -42,9 +42,7 @@ class CartController < ApplicationController
 
   end
 
-  def set_users
-    @users =
-  end
+
 
   def save
 
