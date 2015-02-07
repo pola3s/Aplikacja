@@ -9,6 +9,7 @@
         <td><%= item.title %></td>
         <td width="60"><%= cart_item.count %></td>
         <td><%= button_to "+1", add_to_cart_path(item.id) %></td>
+        <%= button_to "-1", subtract_from_cart_path(item.id) %>
         <td width="60"><%= number_to_currency item.price, :unit => "zł" %></td>
         <td width="60"><%= number_to_currency cart_item.price, :unit => "zł" %></td>
         </tr>

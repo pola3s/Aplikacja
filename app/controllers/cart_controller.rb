@@ -1,4 +1,5 @@
 class CartController < ApplicationController
+  before_filter :authenticate_user!
   def Index
     find_cart
   end
@@ -8,6 +9,7 @@ class CartController < ApplicationController
   end
 
   def add
+
     id = params[:id]
     find_cart()
     cart_item = @cart.cart_items.where(item_id: id).first
@@ -17,6 +19,16 @@ class CartController < ApplicationController
     else
       cart_item.increment!(:count)
     end
+
+    redirect_to :action => :Index
+  end
+
+  def subtract
+
+    id = params[:id]
+    find_cart()
+    cart_item = @cart.cart_items.where(item_id: id).first
+    cart_item.decrement!(:count)
 
     redirect_to :action => :Index
   end

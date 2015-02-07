@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+
+
+
   devise_for :users
   resources :users, only: [:index, :show]
 
 
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
 
   get 'cart/Index'
   root 'static_pages#home'
@@ -14,6 +18,9 @@ Rails.application.routes.draw do
 
 
   post 'cart/add/:id' => 'cart#add', as: 'add_to_cart'
+
+  post 'cart/subtract/:id' => 'cart#subtract', as: 'subtract_from_cart'
+
   get 'cart/show/' => 'cart#show'
 
   resources :items
