@@ -1,9 +1,5 @@
-<h1>Dziękujemy za złożenie zamówienia!</h1>
 
-
-<p>Twoje zamówienie zostało przyjęte do realizacji.</p>
-
-
+<h1>Szczegóły zamówienia</h1>
 <table class="table">
   <tr>
     <th>Numer zamówienia</th>
@@ -59,4 +55,7 @@
     <td><%= number_to_currency @cart.total_price, :unit => "zł" %></td>
   </tr>
 </table>
+
+<h1><%= link_to 'Złóż zamówienie', save_cart_path(@cart.id) %></h1>
+
 

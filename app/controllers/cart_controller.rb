@@ -34,8 +34,30 @@ class CartController < ApplicationController
   end
 
   def show
+
      find_cart
+
   end
+
+
+
+  def save
+
+    id = params[:id]
+    find_cart()
+
+
+    respond_to do |format|
+      if @cart.save
+        format.html { redirect_to items_url, notice: 'Dziękujemy za złożenie zamówienia!' }
+        format.json { render :show, status: :created, location: @cart  }
+      end
+
+    end
+  end
+
+
+
 
   private
   def find_cart
