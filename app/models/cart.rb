@@ -25,14 +25,14 @@ class Cart < ActiveRecord::Base
   def state
     checked_out_at.nil? ? IN_PROGRESS : COMPLETE
   end
-  def display_name
-    ActionController::Base.helpers.number_to_currency(total_price) +
-        " - Order ##{id} (#{user})"
-  end
+  #def display_name
+  #  ActionController::Base.helpers.number_to_currency(total_price) +
+  #      " - Order ##{id} (#{user})"
+  #end
 
 
 
-  def total_price
-    self.cart_items.inject(0){|s,i| s + i.price }
-  end
+  #def total_price
+  #  self.cart_items.inject(0){|s,i| s + i.price }
+  #end
 end

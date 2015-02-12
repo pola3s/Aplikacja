@@ -28,7 +28,7 @@ ActiveAdmin.register Cart do
         tr :class => "odd" do
           td
           td "Total:", :style => "text-align: right;"
-          td number_to_currency(cart.total_price, :unit => "zł")
+          td number_to_currency(cart.total, :unit => "zł")
         end
       end
     end
