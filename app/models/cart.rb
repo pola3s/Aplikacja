@@ -32,7 +32,7 @@ class Cart < ActiveRecord::Base
 
 
 
-  #def total_price
-  #  self.cart_items.inject(0){|s,i| s + i.price }
-  #end
+  def total_price
+    self.cart_items.inject(0){|s,i| s + i.price }
+  end
 end

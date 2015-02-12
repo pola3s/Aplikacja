@@ -64,7 +64,7 @@ class CartController < ApplicationController
     id = params[:id]
     find_cart()
     #@cart.magazine = @item.id
-    @cart.user = current_user1
+    @cart.user = current_user
     @cart.total = @cart.total_price
 
     @cart.save
