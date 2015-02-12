@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:index, :show]
 
+
   get 'cart/Index'
 
   root 'static_pages#home'

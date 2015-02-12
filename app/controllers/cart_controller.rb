@@ -45,9 +45,10 @@ class CartController < ApplicationController
 
 
   def save
-
     id = params[:id]
     find_cart()
+    @cart.user = current_user
+    @cart.total = @cart.total_price
 
     respond_to do |format|
       if @cart.save
@@ -66,6 +67,15 @@ class CartController < ApplicationController
       @cart = Cart.create
       session[:cart_id] = @cart.id
     end
+  end
+
+  private
+  def cart_params
+    params.require(
+        :cart
+    ).permit(
+      :total
+    )
   end
 
 
