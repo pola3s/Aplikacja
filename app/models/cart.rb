@@ -3,6 +3,35 @@ class Cart < ActiveRecord::Base
   has_many :items, through: :cart_items
   belongs_to :user
 
+  scope :in_progress, ->{where("carts.checked_out_at IS NULL")}
+  scope :complete, -> {where("carts.checked_out_at IS NOT NULL")}
+  COMPLETE = "complete"
+  IN_PROGRESS = "in_progress"
+  def self.find_with_item(item)
+    return [] unless item
+    complete.joins(:cart_items).
+        where(["cart_items.product_id = ?", item.id]).
+        order("carts.checked_out_at DESC")
+  end
+  def checkout!
+    self.checked_out_at = Time.now
+    self.save
+  end
+  #def recalculate_price!
+  #  self.total = carts_items.inject(0.0){|sum, carts_item| sum += line_item.price }
+  #  save!
+  #end
+
+  def state
+    checked_out_at.nil? ? IN_PROGRESS : COMPLETE
+  end
+  def display_name
+    ActionController::Base.helpers.number_to_currency(total_price) +
+        " - Order ##{id} (#{user})"
+  end
+
+
+
   def total_price
     self.cart_items.inject(0){|s,i| s + i.price }
   end

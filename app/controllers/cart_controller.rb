@@ -11,6 +11,20 @@ class CartController < ApplicationController
     @cart = Cart.new
   end
 
+
+  def add
+    @cart.save if @cart.new_record?
+    session[:cart_id] = @cart.id
+    product = Product.find(params[:id])
+    LineItem.create! :order => @cart, :product => product, :price => product.price
+    @cart.recalculate_price!
+    flash[:notice] = "Item added to cart!"
+    redirect_to '/cart'
+  end
+
+
+
+
   def add
 
     id = params[:id]
@@ -19,8 +33,10 @@ class CartController < ApplicationController
     if cart_item.nil?
       item = Item.find(id)
       cart_item = CartItem.create(cart: @cart, item: item,count: 1)
+      flash[:notice] = "Item added to cart!"
     else
       cart_item.increment!(:count)
+      flash[:notice] = "Item added to cart!"
     end
 
     redirect_to :action => :Index
@@ -47,18 +63,14 @@ class CartController < ApplicationController
   def save
     id = params[:id]
     find_cart()
-    @cart.magazine = @item.id
-    @cart.user = current_user
+    #@cart.magazine = @item.id
+    @cart.user = current_user1
     @cart.total = @cart.total_price
 
-    respond_to do |format|
-      if @cart.save
-        format.html { redirect_to items_url, notice: 'Dziękujemy za złożenie zamówienia!' }
-        format.json { render :show, status: :created, location: @cart  }
-      end
-
-    end
-
+    @cart.save
+    session.delete(:cart_id)
+    flash[:notice] = "Twoje zamówienie zostało przyjęte do realizacji!"
+    redirect_to "/"
 
   end
 
