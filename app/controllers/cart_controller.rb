@@ -47,6 +47,7 @@ class CartController < ApplicationController
   def save
     id = params[:id]
     find_cart()
+    @cart.magazine = @item.id
     @cart.user = current_user
     @cart.total = @cart.total_price
 
@@ -57,6 +58,8 @@ class CartController < ApplicationController
       end
 
     end
+
+
   end
 
   private
