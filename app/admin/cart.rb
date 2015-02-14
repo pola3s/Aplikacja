@@ -1,21 +1,25 @@
 ActiveAdmin.register Cart do
-  permit_params :user_id, :total, :created_at, :updated_at, :user_name, :item
+
 
   menu :priority => 3
-  actions :index, :show
+  actions :index, :show, :delete
   filter :total
   filter :created_at
   scope :all, :default => true
   scope :in_progress
   scope :complete
 
+
   index do
-    column("Order", :sortable => :id) {|cart| link_to "#{cart.id}" }
-    column("Date", :created_at )
+    column("Zamówienie", :sortable => :id) {|cart| link_to "#{cart.id}" }
+    column("Data", :checked_out_at )
     column("Klient", :user )
-    column("Total", :total )
-    column("State") {|cart| status_tag(cart.state) }
-    actions
+    column("Suma", :total )
+    column("Stan") {|cart| status_tag(cart.state) }
+    actions defaults: true do |cart|
+      link_to 'Change status',
+              carts_path(cart.id)
+      end
   end
 
 
@@ -36,7 +40,7 @@ ActiveAdmin.register Cart do
 
   sidebar :customer_information, :only => :show do
     attributes_table_for cart.user do
-      row("User") { auto_link cart.user }
+      row("Użytkownik") { auto_link cart.user }
       row :email
       row :name
       row :surname

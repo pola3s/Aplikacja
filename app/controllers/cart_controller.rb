@@ -58,15 +58,17 @@ class CartController < ApplicationController
 
   end
 
+  def delete
 
+  end
 
-  def save
+  def checkout
+
     id = params[:id]
     find_cart()
-    #@cart.magazine = @item.id
     @cart.user = current_user
+    @cart.checked_out_at = Time.now
     @cart.total = @cart.total_price
-
     @cart.save
     session.delete(:cart_id)
     flash[:notice] = "Twoje zamówienie zostało przyjęte do realizacji!"
@@ -92,6 +94,9 @@ class CartController < ApplicationController
       :total
     )
   end
+
+
+
 
 
 end
