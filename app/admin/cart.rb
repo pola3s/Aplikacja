@@ -2,7 +2,7 @@ ActiveAdmin.register(Cart) {
 
   permit_params :state, :created_at, :user
 
-  #menu :priority => 3
+  menu :priority => 3
   actions :index, :show, :edit, :update, :destroy
   filter :total
   filter :created_at
@@ -36,7 +36,7 @@ ActiveAdmin.register(Cart) {
   show do
     panel "Informacje" do
       table_for(cart.cart_items) do |t|
-        t.column("Magazyn") { |item| item.item_id }
+        t.column("Ilość", :count)
         t.column("Tytuł", :item)
         t.column("Cena") { |item| number_to_currency item.price, :unit => "zł" }
         tr :class => "odd" do

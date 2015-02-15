@@ -8,7 +8,6 @@ ActiveAdmin.register Item do
     column :signature
     column :description
     column :price
-
     actions
   end
 
