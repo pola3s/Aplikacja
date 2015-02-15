@@ -5,10 +5,9 @@ class Cart < ActiveRecord::Base
   belongs_to :user
   has_many :states
 
-  scope :waiting, -> { where(state: 'waiting') }
-  scope :in_delivery, -> { where(state: 'in_delivery') }
-  scope :delivered, -> { where(state: 'delivered') }
-  scope :in_progress, -> { where(state: 'in_progress') }
+  scope :oczekujące, -> { where(state: 'oczekujące') }
+  scope :opłacone, -> { where(state: 'opłacone') }
+  scope :zakończone, -> { where(state: 'zakończone') }
 
 
 

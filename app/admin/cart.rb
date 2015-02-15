@@ -1,14 +1,16 @@
 ActiveAdmin.register(Cart) {
 
-  permit_params :subtotal, :state, :number, :completed_at, :user_id, :shipping, :order_total
+  permit_params :state, :created_at, :user
 
   #menu :priority => 3
-  #actions :index, :show, :edit, :update
+  actions :index, :show, :edit, :update, :destroy
   filter :total
   filter :created_at
   scope :all, :default => true
-  scope :in_progress
-  scope :in_delivery
+  scope :oczekujące
+  scope :opłacone
+  scope :zakończone
+
 
   index do
   column("Zamówienie", :sortable => :id) {|cart| link_to "#{cart.id}" }
@@ -17,39 +19,14 @@ ActiveAdmin.register(Cart) {
     column("Suma", :total )
     column("Stan") {|cart| status_tag(cart.state) }
     actions
-    #actions defaults: true do |cart|
-    #  link_to 'Change status',
-    #          carts_path(cart.id)
-    #  end
   end
-
-  #index do
-  #  column(:id) { |cart|
-  #    content_tag :nobr do
-  #      link_to "##{cart.id} ", admin_cart_path(cart)
-  #    end
-  #  }
-  #  column("Stan") { |cart| status_tag(cart.state) }
-  #  column(:created_at, :sortable => false)
-  #  column(:user, :sortable => false)
-  #  column(:total_price) { |cart|
-  #    number_to_currency cart.total_price
-  #  }
-  #  column { |cart|
-  #    link_to "Zmień status", admin_cart_path(cart), :method => :edit
-  #  }
-  #  end
 
   form do |f|
     f.inputs "Order" do
-      if f.object.state == 'in_progress'
-        f.input :state, :label => 'Change state', as: :select, collection: ['in_progress', 'waiting']
-      elsif f.object.state == 'waiting'
-        f.input :state, :label => 'Change state', as: :select, collection: ['waiting', 'in_delivery']
-      elsif f.object.state == 'in_delivery'
-        f.input :state, :label => 'Change state', as: :select, collection: ['in_delivery', 'delivered']
-      elsif f.object.state == 'delivered'
-        f.input :state, :disabled => true
+      if f.object.state == 'oczekujące'
+        f.input :state, :label => 'Zmień status', as: :select, collection: ['opłacone', 'zakończone']
+      elsif f.object.state == 'opłacone'
+        f.input :state, :label => 'Change state', as: :select, collection: ['zakończone']
       end
     end
     f.actions
@@ -66,6 +43,7 @@ ActiveAdmin.register(Cart) {
           td
           td "Total:", :style => "text-align: right;"
           td number_to_currency(cart.total, :unit => "zł")
+
         end
       end
     end

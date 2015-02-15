@@ -73,7 +73,9 @@ class CartController < ApplicationController
     @cart.user = current_user
     @cart.created_at = Time.now
     @cart.total = @cart.total_price
+    @cart.state = 'oczekujące'
     @cart.save
+
     session.delete(:cart_id)
     flash[:notice] = "Twoje zamówienie zostało przyjęte do realizacji!"
     redirect_to "/"
