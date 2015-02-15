@@ -62,7 +62,7 @@
 </table>
 
 <% unless @cart.cart_items.empty? %>
-    <h1><%= link_to 'Złóż zamówienie', checkout_path(@cart.id) %></h1>
+    <h1><%= link_to 'Złóż zamówienie', save_cart_path(@cart.id) %></h1>
 <% end %>
 
 

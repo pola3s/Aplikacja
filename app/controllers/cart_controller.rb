@@ -62,12 +62,16 @@ class CartController < ApplicationController
 
   end
 
-  def checkout
+  def update
+
+  end
+
+  def save
 
     id = params[:id]
     find_cart()
     @cart.user = current_user
-    @cart.checked_out_at = Time.now
+    @cart.created_at = Time.now
     @cart.total = @cart.total_price
     @cart.save
     session.delete(:cart_id)
