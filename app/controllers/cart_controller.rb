@@ -33,14 +33,16 @@ class CartController < ApplicationController
     if cart_item.nil?
       item = Item.find(id)
       cart_item = CartItem.create(cart: @cart, item: item,count: 1)
-      flash[:notice] = "Item added to cart!"
+      flash[:notice] = "Przedmiot został dodany do koszyka!"
     else
       cart_item.increment!(:count)
-      flash[:notice] = "Item added to cart!"
+      flash[:notice] = "Przedmiot został dodany do koszyka!"
     end
 
     redirect_to :action => :Index
   end
+
+
 
   def subtract
 
@@ -48,6 +50,7 @@ class CartController < ApplicationController
     find_cart()
     cart_item = @cart.cart_items.where(item_id: id).first
     cart_item.decrement!(:count)
+    flash[:notice] = "Przedmiot został usunięty z koszyka!"
 
     redirect_to :action => :Index
   end
@@ -58,9 +61,7 @@ class CartController < ApplicationController
 
   end
 
-  def delete
 
-  end
 
   def update
 

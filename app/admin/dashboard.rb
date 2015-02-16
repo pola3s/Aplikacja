@@ -19,7 +19,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Ostatnie zamówienia" do
           table_for Cart.last(5).map do |cart|
             column("Zamówienie"){|cart| link_to(cart.id, admin_cart_path(cart.id)) }
-            column("Klient"){|cart| cart.user.name+" "+cart.user.surname }
+            column("Data"){|cart| cart.created_at }
             column("Status") {|cart| status_tag(cart.state) }
             column("Suma") {|cart| number_to_currency cart.total_price }
           end

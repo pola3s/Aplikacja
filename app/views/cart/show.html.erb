@@ -61,10 +61,8 @@
   </tr>
 </table>
 
-<% unless @cart.cart_items.empty? %>
+
+
+<% unless @cart.cart_items.empty?  %>
     <h1><%= link_to 'Złóż zamówienie', save_cart_path(@cart.id) %></h1>
 <% end %>
-
-
-
-
