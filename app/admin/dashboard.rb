@@ -27,16 +27,15 @@ ActiveAdmin.register_page "Dashboard" do
        end
 
 
-
-       column do
-         panel "Najnowsi klienci" do
-           table_for User.last(5).map do |user|
-             column("Użytkownik") {|user| link_to(user.name+" "+user.surname, admin_customer_path(user.id)) }
-             column("Email"){|user| user.email }
-             column("Telefon"){|user| user.phone }
-           end
-         end
-       end
+       #column do
+       #  panel "Najnowsi klienci" do
+       #    table_for User.last(5).map do |user|
+       #      column("Użytkownik") {|user| link_to(user.name+" "+user.surname, admin_customer_path(user.id)) }
+       #      column("Email"){|user| user.email }
+       #      column("Telefon"){|user| user.phone }
+       #    end
+       #  end
+       #end
 
      end
 

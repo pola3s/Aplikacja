@@ -13,8 +13,6 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
-
-
   post 'cart/add/:id' => 'cart#add', as: 'add_to_cart'
 
   post 'cart/subtract/:id' => 'cart#subtract', as: 'subtract_from_cart'
