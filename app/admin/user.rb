@@ -3,7 +3,8 @@ ActiveAdmin.register(User) {
   permit_params :user, :id, :role
   actions :index, :show, :edit, :update, :destroy
   scope :all, :default => true
-  scope :klient
+  scope :koordynator
+
 
   index do
 
@@ -30,7 +31,7 @@ ActiveAdmin.register(User) {
 
   form do |f|
     f.inputs "User" do
-      f.input :role, :label => 'Zmień status', as: :select, collection: ['klient']
+      f.input :role, :label => 'Zmień status', as: :select, collection: ['Koordynator']
       end
       f.actions
   end

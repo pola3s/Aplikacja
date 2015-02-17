@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :carts
   has_many :roles
 
-  scope :klient, -> { where(role: 'klient') }
+  scope :koordynator, -> { where(role: 'Koordynator') }
 
 
   #before_save :default_role
