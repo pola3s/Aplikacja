@@ -1,0 +1,70 @@
+<h1>Szczegóły zamówienia</h1>
+<table class="table">
+  <tr>
+    <th>Numer zamówienia</th>
+    <td>#000<%= @order.id %></td>
+    <%= @order.created_at %>
+  </tr>
+  <tr>
+    <th>
+      Twoje zamówienie
+    </th>
+
+
+
+    <td>
+      <% @order.order_subscriptions.each do |order_subscription| %>
+          <% subscription = order_subscription.subscription %>
+          <p><%= subscription.name %>
+            <%= order_subscription.count %>szt.
+      <% end %>
+
+      <% unless @order.order_subscriptions.any? %>
+          <p>Nie masz żadnych produktów w koszyku. <%= link_to "Dodaj produkt", subscriptions_path %>
+      <% end %>
+
+    </td>
+  </tr>
+
+  <tr>
+    <th>Adres do wysyłki</th>
+    <td>
+      <% if current_user %>
+          <p> <%= current_user.name %> <%= current_user.surname %></p>
+          <p> <%= current_user.street %></p>
+          <p><%= current_user.postcode %> <%= current_user.city %></p>
+          <p><%= link_to 'Edytuj dane', edit_user_registration_path %></p>
+      <% end %>
+      </tr>
+
+  <tr>
+    <th>
+      Dane do przelewu
+    </th>
+    <td>
+      <p>58 1750 0012 0000 0000 2146 9718</p>
+      <p>Raiffeisen bank</p>
+
+      <p>ADRES FIRMY</p>
+      <p>Sp. z.o.o. Sp. Komandytowa</p>
+      <p>Ul. Miłkowskiego 1</p>
+      <p>30-349 Kraków</p>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Tytuł przelewu</th>
+    <td>Zamówienie #000<%= @order.id %></td>
+  </tr>
+
+  <tr>
+    <th>Kwota całkowita</th>
+    <td><%= number_to_currency @order.total_price, :unit => "zł" %></td>
+  </tr>
+</table>
+
+
+
+<% unless @order.order_subscriptions.empty?  %>
+    <h1><%= link_to 'Złóż zamówienie', save_order_path(@order.id, @order.total, @order.order_subscriptions ) %></h1>
+<% end %>

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post 'cart/add/:id' => 'cart#add', as: 'add_to_cart'
 
   post 'cart/subtract/:id' => 'cart#subtract', as: 'subtract_from_cart'
+
   get 'cart/subtract/:id' => 'cart#subtract'
 
   get 'cart/checkout/:id' => 'cart#checkout', as: 'checkout'
@@ -24,9 +25,24 @@ Rails.application.routes.draw do
 
   get 'cart/show/' => 'cart#show'
 
+  post 'order/add/:id' => 'order#add', as: 'add_to_order'
+
+  get 'order/index'
+
+  get 'order/show/' => 'order#show'
+
+  get 'order/save/:id' => 'order#save', as: 'save_order'
+
+  get 'order/show/' => 'order#show'
+
+
   resources :items
 
   resources :carts
+
+  resources :subscriptions
+
+  resources :orders
 
   #map.connect ":controller/:action/:id"
 

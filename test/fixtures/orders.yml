@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  total: 1.5
+  checked_out_at: 2015-02-19 18:17:38
+  state: MyString
+
+two:
+  user_id: 1
+  total: 1.5
+  checked_out_at: 2015-02-19 18:17:38
+  state: MyString

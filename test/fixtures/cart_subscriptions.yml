@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cart_subscriptions: MyString
+  cart_id: 
+  item_id: 
+  count: 1
+
+two:
+  cart_subscriptions: MyString
+  cart_id: 
+  item_id: 
+  count: 1

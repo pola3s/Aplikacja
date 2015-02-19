@@ -6,7 +6,9 @@
 
 
         <% if current_user %>
-            <li><%= link_to "Prenumerata", items_path %></li>
+            <li><%= link_to "Wydania archiwalne", items_path %></li>
+
+            <li><%= link_to "Zamów prenumeratę", subscriptions_path %></li>
 
             <li><%= link_to "Twoje zamówienie",  cart_Index_path %></li>
 
