@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :states
+
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -43,6 +43,10 @@ Rails.application.routes.draw do
   resources :subscriptions
 
   resources :orders
+
+  resources :states
+
+
 
   #map.connect ":controller/:action/:id"
 
