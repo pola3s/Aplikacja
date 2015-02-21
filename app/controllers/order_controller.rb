@@ -32,6 +32,9 @@ class OrderController < ApplicationController
     find_order
   end
 
+  def pay
+    find_order
+  end
   def save
 
     id = params[:id]
@@ -44,6 +47,8 @@ class OrderController < ApplicationController
     session.delete(:order_id)
     flash[:notice] = "Twoje zamówienie zostało przyjęte do realizacji!"
     redirect_to "/"
+
+
 
   end
 

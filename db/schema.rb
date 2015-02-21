@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220143902) do
+ActiveRecord::Schema.define(version: 20150220153126) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20150220143902) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "subscription"
+    t.integer  "subscription_id"
   end
 
   create_table "order_subscriptions", force: true do |t|
@@ -125,6 +126,13 @@ ActiveRecord::Schema.define(version: 20150220143902) do
   create_table "roles", force: true do |t|
     t.string   "name"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscription_items", force: true do |t|
+    t.integer  "subscription_id"
+    t.integer  "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

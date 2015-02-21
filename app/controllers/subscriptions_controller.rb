@@ -12,22 +12,20 @@ class SubscriptionsController < InheritedResources::Base
 
 
 
+
+
+
+
   def new
     @subscription = Subscription.new
   end
 
   def create
-    @subscription = Subscription.new(subscription_params)
 
-    respond_to do |format|
-      if @subscription.save
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @subscription.errors, status: :unprocessable_entity }
-      end
-    end
+  end
+
+  def show
+    find_subscription
   end
 
   def update
@@ -50,7 +48,7 @@ class SubscriptionsController < InheritedResources::Base
 
   private
   def subscription_params
-    params.require(:subscription).permit(:name, :description, :price)
+    params.require(:subscription).permit(:name, :description, :price, :subscription_item )
   end
 
 

@@ -1,11 +1,11 @@
-ActiveAdmin.register(Cart) {
+ActiveAdmin.register Cart do
 
-  permit_params :state, :created_at, :user
+  permit_params :state, :created_at, :user, :cart, :cart_item, :total
 
-  menu :priority => 3
+  menu :priority => 2
   actions :index, :show, :edit, :update, :destroy
-  filter :total
   filter :created_at
+
   scope :all, :default => true
   scope :oczekujące
   scope :opłacone
@@ -20,6 +20,15 @@ ActiveAdmin.register(Cart) {
     column("Stan") {|cart| status_tag(cart.state) }
     actions
   end
+
+  sidebar :item_stats, :only => :index do
+    attributes_table_for Cart do
+      row("Ilość sprzedanych") { Cart.all.count }
+      row("Suma") { Cart.all.sum(:total)}
+     end
+  end
+
+
 
   form do |f|
     f.inputs "Order" do
@@ -63,4 +72,5 @@ ActiveAdmin.register(Cart) {
   end
 
 
-}
+
+end

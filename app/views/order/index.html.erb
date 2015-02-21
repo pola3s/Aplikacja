@@ -19,4 +19,7 @@
   </tr>
 </table>
 
- <%= link_to 'Przejdź dalej', order_show_path(@order.id, @order.total, @order.order_subscriptions ) %></p>
+ <%= link_to 'przejdź dalej', order_show_path(@order.id, @order.total, @order.order_subscriptions ) %>
+<% if current_user.role == "Koordynator"  %>
+    lub <%= link_to 'złóż zamówienie jako koordynator', order_pay_path(@order.id, @order.total, @order.order_subscriptions ) %>
+<% end %>

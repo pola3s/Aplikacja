@@ -3,11 +3,14 @@
   <tr>
     <th>Numer zamówienia</th>
     <td>#000<%= @order.id %></td>
+
   </tr>
   <tr>
     <th>
       Twoje zamówienie
     </th>
+
+
 
     <td>
       <% @order.order_subscriptions.each do |order_subscription| %>
@@ -36,6 +39,17 @@
 
   <tr>
     <th>
+      Adres do zwrotu
+    </th>
+    <td>
+      <p>Sp. z.o.o. Sp. Komandytowa</p>
+      <p>Ul. Miłkowskiego 1</p>
+      <p>30-349 Kraków</p>
+    </td>
+  </tr>
+
+  <tr>
+    <th>
       Dane do przelewu
     </th>
     <td>
@@ -48,20 +62,11 @@
       <p>30-349 Kraków</p>
     </td>
   </tr>
-
-  <tr>
-    <th>Tytuł przelewu</th>
-    <td>Zamówienie #000<%= @order.id %></td>
-  </tr>
-
-  <tr>
-    <th>Kwota całkowita</th>
-    <td><%= number_to_currency @order.total_price, :unit => "zł" %></td>
-  </tr>
 </table>
+<p>Pamiętaj! Jako koordynator rozliczasz się z nami po każdym zakończonym kwartale!</p>
 
 
 
 <% unless @order.order_subscriptions.empty?  %>
-        <h1><%= link_to 'Złóż zamówienie', save_order_path(@order.id, @order.total, @order.order_subscriptions ) %></h1>
+    <h1><%= link_to 'Złóż zamówienie', save_order_path(@order.id, @order.total, @order.order_subscriptions ) %></h1>
 <% end %>

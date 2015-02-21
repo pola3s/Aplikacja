@@ -26,6 +26,10 @@ ActiveAdmin.register_page "Dashboard" do
          end
        end
 
+       end
+
+
+
 
        #column do
        #  panel "Najnowsi klienci" do
@@ -37,7 +41,7 @@ ActiveAdmin.register_page "Dashboard" do
        #  end
        #end
 
-     end
+
 
 
   end

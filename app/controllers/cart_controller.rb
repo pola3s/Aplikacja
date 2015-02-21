@@ -11,22 +11,7 @@ class CartController < ApplicationController
     @cart = Cart.new
   end
 
-
   def add
-    @cart.save if @cart.new_record?
-    session[:cart_id] = @cart.id
-    product = Product.find(params[:id])
-    LineItem.create! :order => @cart, :product => product, :price => product.price
-    @cart.recalculate_price!
-    flash[:notice] = "Item added to cart!"
-    redirect_to '/cart'
-  end
-
-
-
-
-  def add
-
     id = params[:id]
     find_cart()
     cart_item = @cart.cart_items.where(item_id: id).first
@@ -60,8 +45,6 @@ class CartController < ApplicationController
      find_cart
 
   end
-
-
 
   def update
 
@@ -100,6 +83,11 @@ class CartController < ApplicationController
     ).permit(
       :total
     )
+  end
+
+  private
+  def find_item
+    find_item
   end
 
 

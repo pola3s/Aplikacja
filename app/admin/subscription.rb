@@ -1,5 +1,6 @@
-ActiveAdmin.register Subscription, :as => "Prenumerata" do
-  permit_params :name, :description, :price, :item, :subscription_id
+ActiveAdmin.register Subscription do
+
+  permit_params :name, :description, :price, :item, :subscription, :subscription_items, :subscription_item
 
   index do
     selectable_column
@@ -26,19 +27,23 @@ ActiveAdmin.register Subscription, :as => "Prenumerata" do
 
 
  # f.input :unit, :as => :radio, :collection => ItemType.units, include_blank: false
-
-
   show do |ad|
-    attributes_table do
-      row :name
-      row :description
-      row :price
-      panel "Informacje" do
-        table_for(item.subscription) do |t|
-          t.column("Ilość", :item)
-        end
+    panel "Informacje" do
+      table_for(subscription.items) do |t|
+        t.column("Tytuł") { auto_link item.title }
       end
     end
   end
 
+  sidebar :subscription_information, :only => :show do
+    attributes_table_for subscription do
+      row :name
+      row :description
+      row :price
+    end
   end
+
+
+end
+
+

@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   get 'order/show/' => 'order#show'
 
+  get 'order/pay/' => 'order#pay'
 
   resources :items
 

@@ -44,3 +44,5 @@ gem 'devise'
 gem 'paperclip'
 gem 'cancan'
 gem 'simple_form'
+gem 'formtastic', '~> 3.0'
+gem "chartkick"
