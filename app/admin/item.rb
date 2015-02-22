@@ -1,5 +1,6 @@
 ActiveAdmin.register Item do
   permit_params :title, :signature, :description, :price, :image
+  permit_params :name
 
   index do
     selectable_column
