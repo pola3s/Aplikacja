@@ -4,15 +4,16 @@ ActiveAdmin.register(User) {
   actions :index, :show, :edit, :update, :destroy
   scope :all, :default => true
   scope :koordynator
-  filter :any
+  filter :name
+  filter :surname
 
 
 
   index do
 
-    column("User", :sortable => :id) {|user| link_to "#{user.name} #{user.surname}" }
+    column("User", :sortable => :id) {|user| link_to "#{user.email}" }
+    column("User") { |user| "#{user.name } " "#{user.surname}" }
     column ("Status") {|user| status_tag(user.role) }
-
     actions
   end
 

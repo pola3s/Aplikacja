@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220153126) do
+ActiveRecord::Schema.define(version: 20150222122903) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -102,23 +102,12 @@ ActiveRecord::Schema.define(version: 20150220153126) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "subscription"
-    t.integer  "subscription_id"
   end
 
   create_table "order_subscriptions", force: true do |t|
     t.integer  "order_id"
     t.integer  "subscription_id"
     t.integer  "count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "orders", force: true do |t|
-    t.integer  "user_id"
-    t.float    "total"
-    t.datetime "checked_out_at"
-    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -130,21 +119,20 @@ ActiveRecord::Schema.define(version: 20150220153126) do
     t.datetime "updated_at"
   end
 
-  create_table "subscription_items", force: true do |t|
-    t.integer  "subscription_id"
-    t.integer  "item_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "sub_items", force: true do |t|
+    t.integer "sub_id"
+    t.integer "item_id"
   end
 
-  create_table "subscriptions", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.decimal  "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "state"
+  add_index "sub_items", ["item_id"], name: "index_sub_items_on_item_id"
+  add_index "sub_items", ["sub_id"], name: "index_sub_items_on_sub_id"
+
+  create_table "subs", force: true do |t|
+    t.integer "item_id"
+    t.string  "name"
   end
+
+  add_index "subs", ["item_id"], name: "index_subs_on_item_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -167,6 +155,7 @@ ActiveRecord::Schema.define(version: 20150220153126) do
     t.integer  "phone"
     t.string   "references"
     t.string   "role"
+    t.string   "login"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

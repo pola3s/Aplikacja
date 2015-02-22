@@ -47,6 +47,8 @@ Rails.application.routes.draw do
 
   resources :states
 
+  resources :subs
+
 
 
   #map.connect ":controller/:action/:id"

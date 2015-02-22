@@ -11,13 +11,13 @@ ActiveAdmin.register Item do
     actions
   end
 
-  #sidebar :item_stats, :only => :show do
-  # attributes_table_for resource do
-  #    #row("Total Sold") { Cart.find_item(resource).count }
-  #    row("Ilość sprzedanych"){CartItem.where(:item_id => resource.id).sum(:count) }
-  #    row("Ilość sprzedanych"){CartItem.where(:item_id => resource.id || ).sum(:count) }
-  #  end
-  #end
+  sidebar :item_stats, :only => :show do
+   attributes_table_for resource do
+      #row("Total Sold") { Item.find(resource).count }
+      row("Ilość sprzedanych"){CartItem.where(:item_id => resource.id).sum(:count) }
+      #row("Ilość sprzedanych"){Cart.where(CartItem.ItemId => resource.id).sum(:count)}
+      end
+  end
 
   filter :title
   filter :signature
