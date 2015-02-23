@@ -1,0 +1,19 @@
+
+<h1>Prenumerata</h1>
+<table class="table table-condensed">
+  <tbody>
+  <% @subs.each do |sub| %>
+      <tr>
+
+        <div><%= sub.name %></div>
+
+        <%= button_to "Wybierz", add_to_list_path(sub.id) %>
+      </td>
+      </tr>
+
+  <% end %>
+  </tbody>
+</table>
+
+
+

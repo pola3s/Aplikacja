@@ -18,7 +18,7 @@ class OrderController < ApplicationController
     order_subscription = @order.order_subscriptions.where(order_id: id).first
     if order_subscription.nil?
       subscription = Subscription.find(id)
-      order_subscription = OrderSubscription.create(order: @order, subscription: subscription,count: 1)
+      order_subscription = OrderSubscription.create(list: @order, subscription: subscription,count: 1)
       flash[:notice] = "Przedmiot został dodany do koszyka!"
     else
       order_subscription.increment!(:count)
@@ -65,7 +65,7 @@ class OrderController < ApplicationController
   private
   def order_params
     params.require(
-        :order
+        :l
     ).permit(
         :total
     )

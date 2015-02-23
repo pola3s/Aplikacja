@@ -1,0 +1,9 @@
+
+<h1>Prenumerata</h1>
+
+
+
+ <%= link_to 'przejdź dalej', list_show_path(@list.id, @list.total, @list.order_subscriptions ) %>
+<% if current_user.role == "Koordynator"  %>
+    lub <%= link_to 'złóż zamówienie jako koordynator', list_pay_path(@list.id, @list.total, @list.order_subscriptions ) %>
+<% end %>

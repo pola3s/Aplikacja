@@ -73,7 +73,7 @@ ActiveAdmin.setup do |config|
   # config.cancan_ability_class = "Ability"
 
   # You can specify a method to be called on unauthorized access.
-  # This is necessary in order to prevent a redirect loop which happens
+  # This is necessary in list to prevent a redirect loop which happens
   # because, by default, user gets redirected to Dashboard. If user
   # doesn't have access to Dashboard, he'll end up in a redirect loop.
   # Method provided here should be defined in application_controller.rb.

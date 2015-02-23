@@ -25,29 +25,26 @@ Rails.application.routes.draw do
 
   get 'cart/show/' => 'cart#show'
 
-  post 'order/add/:id' => 'order#add', as: 'add_to_order'
+  post 'list/add/:id' => 'list#add', as: 'add_to_list'
 
-  get 'order/index'
+  get 'list/save/:id' => 'list#save', as: 'save_list'
 
-  get 'order/show/' => 'order#show'
+  get 'list/show/' => 'list#show'
 
-  get 'order/save/:id' => 'order#save', as: 'save_order'
+  get 'list/index'
 
-  get 'order/show/' => 'order#show'
 
-  get 'order/pay/' => 'order#pay'
+
 
   resources :items
 
   resources :carts
 
-  resources :subscriptions
-
-  resources :orders
-
   resources :states
 
   resources :subs
+
+  resources :lists
 
 
 
@@ -58,7 +55,7 @@ Rails.application.routes.draw do
 
 
 
-  # The priority is based upon order of creation: first created -> highest priority.
+  # The priority is based upon list of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
